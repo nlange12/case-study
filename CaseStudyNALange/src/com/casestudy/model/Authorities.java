@@ -22,6 +22,9 @@ public class Authorities {
 	@ManyToOne
 	@JoinColumn(name= "email")
 	private Credentials credential;
+	@ManyToOne
+	@JoinColumn(name="member")
+	private Member member;
 
 	public String getAuthority() {
 		return authority;
@@ -54,7 +57,7 @@ class AuthoritiesID implements Serializable{
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name= "username")
+	@JoinColumn(name= "email")
 	private Credentials credential;
 
 	public String getAuthority() {

@@ -1,12 +1,16 @@
 package com.casestudy.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -15,33 +19,32 @@ import javax.persistence.Table;
 @Table(name= "member")
 public class Member {
 @Id
-@Column(name="Member Id")
+@Column(name="member_id")
 private long id;
-@Column(name="Full Name")
+@Column(name="full_name")
 private String name;
-@Column(name="Email")
+@Column(name="email")
 private String email;
-@Column(name="Crossing Year")
+@Column(name="crossing_year")
 private String intiationYr;
-@Column(name="Phone #")
+@Column(name="phoneNum")
 private String phoneNum;
-@ManyToOne
-@Column(name="Chapter_Id")
-private Chapter chapter;
-@OneToMany(targetEntity = Event.class, cascade = CascadeType.ALL, mappedBy="member")
+@OneToMany(targetEntity = Event.class, cascade = CascadeType.ALL)
 private List<Event> events;
-@OneToOne
-@JoinColumn(name= "Cred_Id")
-private Credentials cred;
+@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "member")
+private Set<Authorities> authorities = new HashSet<>();
+//@OneToOne(cascade = CascadeType.ALL)
+//@JoinColumn(name= "cred_id")
+//private Credentials cred;
 
 
-public Member(String name, String email, String intiationYr, String phoneNum, Chapter chapter) {
+public Member(String name, String email, String intiationYr, String phoneNum) {
 	super();
 	this.name = name;
 	this.email = email;
 	this.intiationYr = intiationYr;
 	this.phoneNum = phoneNum;
-	this.chapter = chapter;
+	
 }
 
 
@@ -80,12 +83,7 @@ public String getPhoneNum() {
 public void setPhoneNum(String phoneNum) {
 	this.phoneNum = phoneNum;
 }
-public Chapter getChapter() {
-	return chapter;
-}
-public void setChapter(Chapter chapter) {
-	this.chapter = chapter;
-}
+
 public List<Event> getEvents() {
 	return events;
 }

@@ -21,19 +21,18 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Credentials {
 
 	@Id
-	@Email
-	@Column(name = "Email", nullable = false)	
+	@Column(name = "username", nullable = false)	
 	private String username;	
-	@Column(name = "Name", nullable= false)
+	@Column(name = "name", nullable= false)
 	private String name;
-	@Column(name = "Password", nullable= false)
+	@Column(name = "password", nullable= false)
 	private String password;
-	@Column(name = "Enabled", nullable= false)
+	@Column(name = "enabled", nullable= false)
 	private boolean enabled;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "credential")
 	private Set<Authorities> authorities = new HashSet<>();
-	@OneToOne(mappedBy="cred")
-	private Member member;
+//	@OneToOne(mappedBy="cred")
+//	private Member member;
 	public String getUsername() {
 		return username;
 	}

@@ -14,12 +14,11 @@ import javax.persistence.Table;
 @Table(name="events")
 public class Event {
 @Id	
-@Column(name = "Event ID")
+@Column(name = "event_id")
 private long id;
-@Column(name= "Event Date")
+@Column(name= "event_date")
 private Date date;
-@ManyToOne
-private Member member;
+
 @OneToMany(targetEntity = Comment.class)
 private List<Comment> comments;
 
@@ -39,12 +38,7 @@ public Date getDate() {
 public void setDate(Date date) {
 	this.date = date;
 }
-public Member getMember() {
-	return member;
-}
-public void setMember(Member member) {
-	this.member = member;
-}
+
 public List<Comment> getComments() {
 	return comments;
 }

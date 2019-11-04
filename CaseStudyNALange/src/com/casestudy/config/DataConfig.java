@@ -35,7 +35,7 @@ public class DataConfig {
 	        lcemfb.setJpaVendorAdapter(getJpaVendorAdapter());  ///shows what we are using 
 	        ///JDBC
 	        lcemfb.setDataSource(dataSource());
-	        lcemfb.setPersistenceUnitName("CaseStudyPersistenceUnit");
+	        lcemfb.setPersistenceUnitName("CSPersistenceUnit");
 	        lcemfb.setPackagesToScan("com.casestudy.model");
 	        //Hibernate
 	        lcemfb.setJpaProperties(hibernateProperties());

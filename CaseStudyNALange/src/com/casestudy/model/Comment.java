@@ -12,7 +12,7 @@ public class Comment {
 	@Id
 private long id;
 	
-	@Column(name="comment Date")
+	@Column(name="comment_date")
 private Date date;
 	
 

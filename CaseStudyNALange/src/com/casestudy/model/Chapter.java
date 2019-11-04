@@ -13,13 +13,15 @@ import javax.persistence.Table;
 public class Chapter {
 
 	@Id
-	@Column(name="ID")
+	@Column(name="id")
 	private long id;
-	@Column(name="Chapter Name")
+	@Column(name="chapter_name")
 	private String name;
-	@Column(name="School")
+	@Column(name="school")
 	private String school;
-	@OneToMany(targetEntity= Member.class, cascade = CascadeType.ALL, mappedBy="chapter")
+	
+	
+	@OneToMany(targetEntity= Member.class, cascade = CascadeType.ALL)
 	private List<Member> members;
 	
 	

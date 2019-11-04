@@ -1,0 +1,11 @@
+com\casestudy\model\Chapter.class
+com\casestudy\model\Authorities.class
+com\casestudy\model\AuthoritiesID.class
+com\casestudy\model\Credentials.class
+com\casestudy\config\WebSecuityConfig.class
+com\casestudy\model\Member.class
+com\casestudy\model\Comment.class
+com\casestudy\config\DataConfig.class
+com\casestudy\service\CredentialsService.class
+com\casestudy\model\Event.class
+com\casestudy\repository\CredentialsRepository.class
