@@ -7,12 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="Comments")
+@Table(name="comments")
 public class Comment {
 	@Id
 private long id;
 	
-	@Column(name="Comment Date")
+	@Column(name="comment Date")
 private Date date;
 	
 

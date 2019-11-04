@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
-@Table(name="Events")
+@Table(name="events")
 public class Event {
 @Id	
 @Column(name = "Event ID")

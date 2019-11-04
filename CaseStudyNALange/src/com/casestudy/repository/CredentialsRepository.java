@@ -7,5 +7,5 @@ import com.casestudy.model.Credentials;
 @Repository
 public interface CredentialsRepository extends CrudRepository<Credentials, String> {
 
-	Credentials findByEmail(String email);
+	Credentials findByUsername(String username);
 }
