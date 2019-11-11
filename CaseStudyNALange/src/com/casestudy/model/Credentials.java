@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -31,8 +33,25 @@ public class Credentials {
 	private boolean enabled;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "credential")
 	private Set<Authorities> authorities = new HashSet<>();
-//	@OneToOne(mappedBy="cred")
-//	private Member member;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy= "credential")
+	private Member member;
+	
+	
+	public Credentials() {
+		
+	}
+	
+	
+	
+	public Credentials(String username, String name, String password) {
+	super();
+	this.username = username;
+	this.name = name;
+	this.password = password;
+}
+
+
+
 	public String getUsername() {
 		return username;
 	}
@@ -63,6 +82,22 @@ public class Credentials {
 	public void setAuthorities(Set<Authorities> authorities) {
 		this.authorities = authorities;
 	}
+	
+	
+	
+	
+	public Member getMember() {
+		return member;
+	}
+
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

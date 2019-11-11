@@ -20,11 +20,9 @@ public class Authorities {
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name= "email")
+	@JoinColumn(name= "username")
 	private Credentials credential;
-	@ManyToOne
-	@JoinColumn(name="member")
-	private Member member;
+
 
 	public String getAuthority() {
 		return authority;
@@ -42,12 +40,11 @@ public class Authorities {
 		this.credential = credential;
 	}
 
-	
+
 	
 }
 class AuthoritiesID implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
 	
 
 	@Id
@@ -57,7 +54,7 @@ class AuthoritiesID implements Serializable{
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name= "email")
+	@JoinColumn(name= "username")
 	private Credentials credential;
 
 	public String getAuthority() {
@@ -75,6 +72,8 @@ class AuthoritiesID implements Serializable{
 	public void setCredentials(Credentials credential) {
 		this.credential = credential;
 	}
+	
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

@@ -3,48 +3,99 @@ package com.casestudy.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+
 @Entity
-@Table(name="events")
+@Table(name = "events")
 public class Event {
-@Id	
-@Column(name = "event_id")
-private long id;
-@Column(name= "event_date")
-private Date date;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "eventId")
+	private long id;
 
-@OneToMany(targetEntity = Comment.class)
-private List<Comment> comments;
+	@NotEmpty
+	@Column(name = "eventTitle", nullable = false)
+	private String title;
 
+	@NotEmpty
+	@Column(name = "eventContent", nullable = false, length= 1000)
+	private String content;
 
-public Event() {
-	
-}
-public long getId() {
-	return id;
-}
-public void setId(long id) {
-	this.id = id;
-}
-public Date getDate() {
-	return date;
-}
-public void setDate(Date date) {
-	this.date = date;
-}
+	@Column(name = "DateOfPosting", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timestamp;
 
-public List<Comment> getComments() {
-	return comments;
-}
-public void setComments(List<Comment> comments) {
-	this.comments = comments;
-}
+	@OneToMany(targetEntity = Comment.class, mappedBy = "event", cascade = CascadeType.ALL)
+	private List<Comment> comments;
 
+	@ManyToOne
+	@JoinTable(name = "member_events", joinColumns = @JoinColumn(name = "eventId"), inverseJoinColumns = @JoinColumn(name = "memberId"))
+	private Member member;
+
+	public Event() {
+
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
 
 }

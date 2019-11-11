@@ -7,18 +7,35 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.casestudy.dao.CredentialDAO;
 import com.casestudy.model.Credentials;
 import com.casestudy.repository.CredentialsRepository;
+
 @Service("credentialsService")
-public class CredentialsService implements UserDetailsService {
+public class CredentialsService implements UserDetailsService, CredentialDAO {
 	
 	
 	@Autowired
 	CredentialsRepository cRepos;
-	
-	public void saveCred(Credentials cred) {
-		cRepos.save(cred);
+	@Override
+	public boolean saveCred(Credentials cred) {
+		return cRepos.save(cred) !=null;
 	}
+	@Override
+	  public boolean addCred(Credentials cred) {
+	        return cRepos.save(cred) != null;
+	    }
+	@Override
+	  public void deleteCred(Credentials cred) {
+	        cRepos.delete(cred);
+	    }
+	@Override
+	  public Credentials getCredByUsername(String username) {
+		 return cRepos.findByUsername(username);
+		 
+	  }
+
+
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
