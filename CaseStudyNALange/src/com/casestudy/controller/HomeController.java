@@ -51,10 +51,11 @@ public class HomeController {
 		mv.addObject("memberName", member.getName());
 		mv.addObject("chapterName", member.getChapter().getName());
 		mv.addObject("chapterSchool", member.getChapter().getSchool());
-		 mv.addObject("member", member);
+		mv.addObject("member", member);
 		return mv;
 	}
-	//page showing all events
+
+	// page showing all events
 	@RequestMapping("/events")
 	public ModelAndView getEvents(Principal principal) {
 		ModelAndView mv = new ModelAndView("events");
@@ -62,7 +63,8 @@ public class HomeController {
 		mv.addObject("eventList", eDAO.getAllEvents());
 		return mv;
 	}
-	//go to mandated programs page
+
+	// go to mandated programs page
 	@RequestMapping("/programs")
 	public ModelAndView seePrograms() {
 		ModelAndView mv = new ModelAndView("programs");

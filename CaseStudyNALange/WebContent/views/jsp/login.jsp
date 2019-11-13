@@ -9,57 +9,58 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
-.table{
-margin : 0 auto;
-width:250px
+.table {
+	margin: 0 auto;
+	width: 250px
 }
-body{
-background-color: purple;
-  text-align: center;
-  color: white;
-  font-family:Helvetica;
+
+body {
+	background-color: purple;
+	text-align: center;
+	color: white;
+	font-family: Helvetica;
 }
-a:link{
-color:gold;
+
+a:link {
+	color: gold;
 }
-a:visited{
-color: gold;
+
+a:visited {
+	color: gold;
 }
 </style>
 </head>
 <body>
-<jsp:include page ="_menu.jsp"></jsp:include> 
+	<jsp:include page="_menu.jsp"></jsp:include>
 	${message}
-	<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
 	<div class="table">
-	<form action='<spring:url value="/loginAction" />' method="post">
-		<table>
-			<tr>
+		<form action='<spring:url value="/loginAction" />' method="post">
+			<table>
+				<tr>
 
-				<td style="color:gold; font-weight: bold;
-				">Username</td>
-				<td><input type="text" name="username" /></td>
-			</tr>
-			<tr>
+					<td style="color: gold; font-weight: bold;">Username</td>
+					<td><input type="text" name="username" /></td>
+				</tr>
+				<tr>
 
-				<td style="color:gold; font-weight: bold;
-				">Password</td>
-				<td><input type="password" name="password" /></td>
-			</tr>
-			<tr>
-				<td><button type="submit">Login</button></td>
-			</tr>
-		</table>
-	</form>
-	<a href="register">No Login? Sing up Here</a>
-	<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-		<img alt="sheild" src="<c:url value= '/images/sheild.png'/>"/>
-	
-</div>
+					<td style="color: gold; font-weight: bold;">Password</td>
+					<td><input type="password" name="password" /></td>
+				</tr>
+				<tr>
+					<td><button type="submit">Login</button></td>
+				</tr>
+			</table>
+		</form>
+		<a href="register">No Login? Sing up Here</a>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<img alt="sheild" src="<c:url value= '/images/sheild.png'/>" />
+
+	</div>
 </body>
 </html>
 

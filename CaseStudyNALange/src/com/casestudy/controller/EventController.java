@@ -40,16 +40,12 @@ public class EventController {
 	MemberDAO mDAO;
 	@Autowired
 	RSVPDAO rDAO;
-	
-	
+
 	@InitBinder
 	public void initialbinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
 		binder.registerCustomEditor(Date.class, "date", new CustomDateEditor(sdf, false));
 	}
-	
-	
-	
 
 	// create a new event
 	@RequestMapping("/events/createnew")
@@ -62,7 +58,8 @@ public class EventController {
 	// adds new event to databse
 	@RequestMapping(value = "/events/processEvent", method = RequestMethod.POST)
 	public ModelAndView postEvent(RedirectAttributes redirect, Principal principal, @RequestParam("title") String title,
-			 @RequestParam("date")@DateTimeFormat (pattern = "MM-dd") Date date, @Valid @ModelAttribute("eventObj") Event eve, @RequestParam("content") String content) {
+			@RequestParam("date") @DateTimeFormat(pattern = "MM-dd") Date date,
+			@Valid @ModelAttribute("eventObj") Event eve, @RequestParam("content") String content) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Event event = new Event();
 		Member member = mDAO.getMemberByUsername(principal.getName());
@@ -77,7 +74,8 @@ public class EventController {
 		return mv;
 
 	}
-	//edit event
+
+	// edit event
 	@RequestMapping("/events/{id}/edit")
 	public ModelAndView editEvent(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("editEvent");
@@ -86,11 +84,12 @@ public class EventController {
 		mv.addObject("action", "update");
 		return mv;
 	}
-	//process edited event
+
+	// process edited event
 	@RequestMapping(value = "/events/{id}/processEdit", method = RequestMethod.POST)
 	public ModelAndView editEventPost(RedirectAttributes redirect, Principal principal,
 			@RequestParam("title") String title, @Valid @ModelAttribute("eventObj") Event eve,
-			@RequestParam("content") String content, @PathVariable("id") long id,BindingResult br) {
+			@RequestParam("content") String content, @PathVariable("id") long id, BindingResult br) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Event event = eDAO.findById(id);
 		event.setContent(eve.getContent());
@@ -101,7 +100,8 @@ public class EventController {
 
 		return mv;
 	}
-	//delete event
+
+	// delete event
 	@RequestMapping(value = "events/{id}/delete")
 	public ModelAndView deleteUser(@PathVariable("id") long id, RedirectAttributes redirect, Principal principal) {
 		eDAO.deleteEvent(eDAO.findById(id));
@@ -109,34 +109,38 @@ public class EventController {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		return mv;
 	}
-	//search events by between two dates
+
+	// search events by between two dates
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search( @RequestParam("d1") @DateTimeFormat (pattern = "yyyy-MM-dd")Date d1, @RequestParam("d2") @DateTimeFormat(pattern = "yyyy-MM-dd")Date d2, RedirectAttributes redirect) throws ParseException{
-	List<Event> list = new ArrayList <Event>();
-	ModelAndView mv = null;
-	if(d1 == null || d2 == null) {
-		mv = new ModelAndView("redirect:/events");
-		return mv;
+	public ModelAndView search(@RequestParam("d1") @DateTimeFormat(pattern = "yyyy-MM-dd") Date d1,
+			@RequestParam("d2") @DateTimeFormat(pattern = "yyyy-MM-dd") Date d2, RedirectAttributes redirect)
+			throws ParseException {
+		List<Event> list = new ArrayList<Event>();
+		ModelAndView mv = null;
+		if (d1 == null || d2 == null) {
+			mv = new ModelAndView("redirect:/events");
+			return mv;
 		}
-	
+
 		list = eDAO.getEventByDate(d1, d2);
-     if(list.size()==0) {
- 		redirect.addFlashAttribute("message", "No Results Found!");
- 		mv = new ModelAndView("redirect:/events");
- 		return mv;
- 
-     }else {
-    	 mv= new ModelAndView("events");
-    	 mv.addObject("eventList", list );
-    	 return mv;
-     }
-     
-     }
+		if (list.size() == 0) {
+			redirect.addFlashAttribute("message", "No Results Found!");
+			mv = new ModelAndView("redirect:/events");
+			return mv;
+
+		} else {
+			mv = new ModelAndView("events");
+			mv.addObject("eventList", list);
+			return mv;
+		}
+
+	}
+
 	@RequestMapping(value = "/events/{id}/rsvp", method = RequestMethod.POST)
 	public ModelAndView rsvpForEvent(String content, @PathVariable("id") long id, Principal principal,
-			RedirectAttributes redirect ) {
+			RedirectAttributes redirect) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
-		Event event =eDAO.findById(id);
+		Event event = eDAO.findById(id);
 		Member member = mDAO.getMemberByUsername(principal.getName());
 		RSVP rsvp = new RSVP();
 		rsvp.setName(member.getName());
@@ -147,20 +151,17 @@ public class EventController {
 		event.getRsvp().add(rsvp);
 		member.getRsvp().add(rsvp);
 		rDAO.addRSVP(rsvp);
-		redirect.addFlashAttribute("message","You Have Succesfully RSVP'd for This Event!");
+		redirect.addFlashAttribute("message", "You Have Succesfully RSVP'd for This Event!");
 		return mv;
 	}
-	
-	
-		@RequestMapping(value = "/events/{id}/unrsvp")
-		public ModelAndView unRSVP(@PathVariable("id") long id, RedirectAttributes redirect, Principal principal) {
-			Member member = mDAO.getMemberByUsername(principal.getName());
-			rDAO.deleteRSVP(rDAO.findByName(member.getName()));			
-			redirect.addFlashAttribute("message", "You Have UN-RSVP'd for this event!");
-			ModelAndView mv = new ModelAndView("redirect:/events");
-			return mv;
-		}
-		
-	
+
+	@RequestMapping(value = "/events/{id}/unrsvp")
+	public ModelAndView unRSVP(@PathVariable("id") long id, RedirectAttributes redirect, Principal principal) {
+		Member member = mDAO.getMemberByUsername(principal.getName());
+		rDAO.deleteRSVP(rDAO.findByName(member.getName()));
+		redirect.addFlashAttribute("message", "You Have UN-RSVP'd for this event!");
+		ModelAndView mv = new ModelAndView("redirect:/events");
+		return mv;
+	}
 
 }

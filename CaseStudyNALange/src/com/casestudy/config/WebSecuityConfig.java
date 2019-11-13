@@ -17,31 +17,35 @@ import com.casestudy.service.CredentialsService;
 @Configuration
 @EnableWebSecurity
 @ComponentScan("com.casestudy")
-public class WebSecuityConfig extends WebSecurityConfigurerAdapter{// if you want to use spring securitys login form extend WebSecurityConfiguration
+public class WebSecuityConfig extends WebSecurityConfigurerAdapter {
+																	
 
-	
-	
-	
 	@Autowired
-	private CredentialsService cServ;	
-	
+	private CredentialsService cServ;
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(cServ).passwordEncoder(passwordEncoder());
-		
+
 	}
-	
+
 	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers("/js/**", "/images/**", "/css/**", "/resources/**", "/scripts/**"); //ignoring those url patterns (lets what users see things like images and css on log in page without loggin in)
+		web.ignoring().antMatchers("/js/**", "/images/**", "/css/**", "/resources/**", "/scripts/**"); 
+																										
+																										
+																										
+																										
+																									
+																								
+																									
 	}
-	
 
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		http.authorizeRequests().antMatchers("/processCredential").permitAll();
 		http.authorizeRequests().antMatchers("/register").permitAll();
 		http.authorizeRequests().antMatchers("/chapters").hasAnyRole("USER", "ADMIN");
@@ -49,16 +53,10 @@ public class WebSecuityConfig extends WebSecurityConfigurerAdapter{// if you wan
 		http.authorizeRequests().antMatchers("/events/**").hasAnyRole("ADMIN", "USER");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-		
-		
-		
-		http.authorizeRequests()
-		.and()
-		.formLogin()
-		.loginPage("/login").loginProcessingUrl("/loginAction").defaultSuccessUrl("/", true).permitAll()// when you log in you get forcible sent to the home page
-		.and()
-		.logout().logoutSuccessUrl("/login").permitAll()// after successfull logout tak back to login page
-		.and()
-		.csrf().disable();
+
+		http.authorizeRequests().and().formLogin().loginPage("/login").loginProcessingUrl("/loginAction")
+				.defaultSuccessUrl("/", true).permitAll()// when you log in you get forcible sent to the home page
+				.and().logout().logoutSuccessUrl("/login").permitAll()// after successfull logout tak back to login page
+				.and().csrf().disable();
 	}
 }

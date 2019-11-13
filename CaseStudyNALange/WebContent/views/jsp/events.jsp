@@ -11,110 +11,117 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
-body{
-background-color: purple;
-  text-align: center;
-  color: white;
-  font-family:Helvetica;
-}
-.border{
-border:solid;
-border-color:gold;
-margin: 10px;
-padding: 10px;
-color: purple;
-background-color: gold;
-font-weight:bold;
-}
-a:link{
-color:gold;
-}
-a:visited{
-color: gold;
-}
-.date{
-border:solid 2px;
-border-color:gold;
-text-align:center;
-margin-left: auto;
-margin-right: auto;
-}
-.middle{
-text-align: center;
-color:purple;
-font-weight: bold;
-margin-left: auto;
-margin-right: auto;
-}
-.leftcolumn{
-width:20%;
-float:left;
-padding :1em;
-}
-.ctrcolumn{
-width:60%;
-float:left
+body {
+	background-color: purple;
+	text-align: center;
+	color: white;
+	font-family: Helvetica;
 }
 
+.border {
+	border: solid;
+	border-color: gold;
+	margin: 10px;
+	padding: 10px;
+	color: purple;
+	background-color: gold;
+	font-weight: bold;
+}
+
+a:link {
+	color: gold;
+}
+
+a:visited {
+	color: gold;
+}
+
+.date {
+	border: solid 2px;
+	border-color: gold;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.middle {
+	text-align: center;
+	color: purple;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.leftcolumn {
+	width: 20%;
+	float: left;
+	padding: 1em;
+}
+
+.ctrcolumn {
+	width: 60%;
+	float: left
+}
 </style>
 </head>
 <body>
-<jsp:include page ="_menu.jsp"></jsp:include> 
+	<jsp:include page="_menu.jsp"></jsp:include>
 	${message}
 	<br>
-	
-	<a href="${pageContext.request.contextPath}/events/createnew">Create
-		New Event</a><br>
-		<div class="leftcolumn">
-		<form method="post"
-		action="search">
-		<table class= "middle">
-	<tr>
-				<td><input type="date" name="d1" id="d1" class="date"/></td>
-			</tr>
-			<tr>
-				<td><input type="date" name="d2" id="d2" class="date" /></td>
-				
-			</tr>
-			<tr>
 
-				<td><a href= "search"><button name = "search" id="search">Search</button></a></td>
-		</tr>
-		<tr>
-			
-			
-			<td><a href= "user"><button name = "clear" id="clear">Clear</button></a></td>
-			</tr>
-		</table>
-	</form>
+	<a href="${pageContext.request.contextPath}/events/createnew">Create
+		New Event</a>
+	<br>
+	<div class="leftcolumn">
+		<form method="post" action="search">
+			<table class="middle">
+				<tr>
+					<td><input type="date" name="d1" id="d1" class="date" /></td>
+				</tr>
+				<tr>
+					<td><input type="date" name="d2" id="d2" class="date" /></td>
+
+				</tr>
+				<tr>
+
+					<td><a href="search"><button name="search" id="search">Search</button></a></td>
+				</tr>
+				<tr>
+
+
+					<td><a href="user"><button name="clear" id="clear">Clear</button></a></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 	<div class="ctrcolumn">
-	<c:forEach var="events" items="${eventList}">
-		<p class="border">
-			<span style="font-weight: bold; font-style:impact; font-size:2em;">${events.title}</span><br> Hosted by:
-			${events.getMember().getChapName()}<br> 
-			Date:
-			${events.date}<br> ${events.content}<br>
-			<c:if test="${events.getComments().size() > 0 }">
+		<c:forEach var="events" items="${eventList}">
+			<p class="border">
+				<span style="font-weight: bold; font-style: impact; font-size: 2em;">${events.title}</span><br>
+				Hosted by: ${events.getMember().getChapName()}<br> Date:
+				${events.date}<br> ${events.content}<br>
+				<c:if test="${events.getComments().size() > 0 }">
 			${events.getComments().size()}comment(s)<br>
-		</c:if><c:if test="${events.getRsvp().size() > 0 }">
+				</c:if>
+				<c:if test="${events.getRsvp().size() > 0 }">
 			${events.getRsvp().size()}rsvp(s)
 		</c:if>
-		</p>
-		<a
-			href="${pageContext.request.contextPath}/events/${events.id}/comments">
-			Comment/RSVP</a>
-		<c:if test="${events.getMember().getId() == member.getId()}">
-			<a href="${pageContext.request.contextPath}/events/${events.id}/edit">Edit</a>
-		</c:if>
-		<c:if test="${events.getMember().getId() == member.getId()}">
+			</p>
 			<a
-				href="${pageContext.request.contextPath}/events/${events.id}/delete">Delete</a>
-		</c:if>
+				href="${pageContext.request.contextPath}/events/${events.id}/comments">
+				Comment/RSVP</a>
+			<c:if test="${events.getMember().getId() == member.getId()}">
+				<a
+					href="${pageContext.request.contextPath}/events/${events.id}/edit">Edit</a>
+			</c:if>
+			<c:if test="${events.getMember().getId() == member.getId()}">
+				<a
+					href="${pageContext.request.contextPath}/events/${events.id}/delete">Delete</a>
+			</c:if>
 
 
 
-	</c:forEach>
+		</c:forEach>
 	</div>
 </body>
 </html>
