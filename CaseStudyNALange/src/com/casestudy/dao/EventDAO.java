@@ -1,5 +1,6 @@
 package com.casestudy.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.casestudy.model.Event;
@@ -18,4 +19,6 @@ public interface EventDAO {
 	public Event findById(long id);
 	
 	public void deleteEvent(Event event);
+	
+	public List<Event> getEventByDate(Date d1, Date d2);
 }

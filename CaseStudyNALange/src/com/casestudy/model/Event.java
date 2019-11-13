@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -34,6 +35,11 @@ public class Event {
 	@NotEmpty
 	@Column(name = "eventContent", nullable = false, length= 1000)
 	private String content;
+	
+	
+	@Future(message = "Date of event cannot be in the past!")
+	@Column(name = "eventDate")
+	private Date date;
 
 	@Column(name = "DateOfPosting", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -45,6 +51,11 @@ public class Event {
 	@ManyToOne
 	@JoinTable(name = "member_events", joinColumns = @JoinColumn(name = "eventId"), inverseJoinColumns = @JoinColumn(name = "memberId"))
 	private Member member;
+	
+	@OneToMany(targetEntity= RSVP.class, mappedBy="event", cascade = CascadeType.ALL)
+	private List<RSVP> rsvp;
+	
+
 
 	public Event() {
 
@@ -97,5 +108,25 @@ public class Event {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public List<RSVP> getRsvp() {
+		return rsvp;
+	}
+
+	public void setRsvp(List<RSVP> rsvp) {
+		this.rsvp = rsvp;
+	}
+	
+	
+	
+	
 
 }

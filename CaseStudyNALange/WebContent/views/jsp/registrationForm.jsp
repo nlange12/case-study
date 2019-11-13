@@ -9,25 +9,55 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Form</title>
+<style>
+.table{
+margin : 0 auto;
+width:250px
+}
+body{
+background-color: purple;
+  text-align: center;
+  color: white;
+  font-family:Helvetica;
+}
+a:link{
+color:gold;
+}
+a:visited{
+color: gold;
+}
+</style>
 </head>
 <body>
+<jsp:include page ="_menu.jsp"></jsp:include> 
+<div>&nbsp;</div> 
+<div>&nbsp;</div> 
+<div>&nbsp;</div> 
+<div>&nbsp;</div> 
+ 
 	<p>${message}</p>
+	<div class="table">
 	<form:form id="resFormObj" modelAttribute="resFormObj" method="post"
 		action="${pageContext.request.contextPath}/processCredential">
 		<table class="middle">
 			<tr>
 
-				<td><form:label path="name" />Name:</td>
-				<td><form:input path="name" name="name" id="name"
+				<td style="color:gold; font-weight: bold;
+				"><form:label path="name" />Name:</td>
+				<td><form:input  style="border:solid;
+border-color:gold;" path="name" name="name" id="name"
 						placeholder="Full Name" /></td>
 				<td><form:errors path="name" /></td>
 			</tr>
 			<tr>
 
-				<td><form:label path="username" />Username:</td>
-				<c:if test="${action == 'update'}"><td><form:input readonly="true" path="username" name="username" id="username"
+				<td style="color:gold; font-weight: bold;
+				"><form:label path="username" />Username:</td>
+				<c:if test="${action == 'update'}"><td><form:input style="border:solid;
+border-color:gold;" readonly="true" path="username" name="username" id="username"
 						placeholder="Username" /></td></c:if>
-						<c:if test="${action != 'update'}"><td><form:input path="username" name="username" id="username"
+						<c:if test="${action != 'update'}"><td><form:input style="border:solid;
+border-color:gold;" path="username" name="username" id="username"
 						placeholder="Username" /></td></c:if>
 				<td><form:errors path="username" /></td>
 			</tr>
@@ -35,36 +65,46 @@
 				action="${pageContext.request.contextPath}/processCredential">
 				<tr>
 
-					<td><form:label path="email" />Email:</td>
-					<td><form:input path="email" name="email" id="email"
+					<td style="color:gold; font-weight: bold;
+				"><form:label path="email" />Email:</td>
+					<td><form:input path="email" style="border:solid;
+border-color:gold;" name="email" id="email"
 							placeholder="Email Address" /></td>
 					<td><form:errors path="email" /></td>
 				</tr>
 				<tr>
 
-					<td><form:label path="intiationYr" />Initition Year:</td>
-					<td><form:input path="intiationYr" name="intiationYr"
-							id="intiationYr" placeholder="Semester/Year" /></td>
+					<td style="color:gold; font-weight: bold;
+				"><form:label path="intiationYr" /> Year:</td>
+					<td><form:input path="intiationYr" style="border:solid;
+border-color:gold;" name="intiationYr"
+							id="intiationYr" placeholder="Semester/Year of Initiation" /></td>
 					<td><form:errors path="intiationYr" /></td>
 				</tr>
 				<tr>
 
-					<td><form:label path="phoneNum" />Phone Number:</td>
-					<td><form:input name="phoneNum" id="phoneNum" path="phoneNum"
+					<td style="color:gold; font-weight: bold;
+				"><form:label path="phoneNum" />Number:</td>
+					<td><form:input name="phoneNum" style="border:solid;
+border-color:gold;" id="phoneNum" path="phoneNum"
 							placeholder="xxx-xxx-xxxx" /></td>
 					<td><form:errors path="phoneNum" /></td>
 				</tr>
 				<tr>
 
-					<td><form:label path="chapter.name" />Chapter Name:</td>
-					<td><form:input name="chapter.name" id="chapter.name"
+					<td style="color:gold; font-weight: bold;
+				"><form:label path="chapter.name" />Chapter Name:</td>
+					<td><form:input name="chapter.name" style="border:solid;
+border-color:gold;" id="chapter.name"
 							path="chapter.name" placeholder="Chapter Name ex. Nu Tau" /></td>
 					<td><form:errors path="chapter.name" /></td>
 				</tr>
 				<tr>
 
-					<td><form:label path="chapter.school" />Chapter School:</td>
-					<td><form:input name="chapter.school" id="chapter.school"
+					<td style="color:gold; font-weight: bold;
+				"><form:label path="chapter.school" />Chapter School:</td>
+					<td><form:input name="chapter.school" style="border:solid;
+border-color:gold;" id="chapter.school"
 							path="chapter.school" placeholder="School Name" /></td>
 					<td><form:errors path="chapter.school" /></td>
 				</tr>
@@ -75,15 +115,19 @@
 			</form:form>
 			<tr>
 
-				<td><form:label path="password" />Password:</td>
-				<td><form:input type="password" name="password" id="password"
+				<td style="color:gold; font-weight: bold;
+				"><form:label path="password" />Password:</td>
+				<td><form:input type="password" style="border:solid;
+border-color:gold;" name="password" id="password"
 						path="password" /></td>
 				<td><form:errors path="password" /></td>
 			</tr>
 			<tr>
 
-				<td><label>Confirm Password:</label></td>
-				<td><input type="password" name="confpassword" id="password"
+				<td style="color:gold; font-weight: bold;
+				"><label>Confirm Password:</label></td>
+				<td><input type="password" style="border:solid;
+border-color:gold;" name="confpassword" id="password"
 					placeholder="Confirm Password" /></td>
 				<td><form:errors path="password" /></td>
 
@@ -100,5 +144,6 @@
 
 		</table>
 	</form:form>
+	</div>
 </body>
 </html>

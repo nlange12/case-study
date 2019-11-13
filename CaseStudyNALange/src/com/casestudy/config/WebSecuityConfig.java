@@ -43,12 +43,10 @@ public class WebSecuityConfig extends WebSecurityConfigurerAdapter{// if you wan
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests().antMatchers("/processCredential").permitAll();
-		http.authorizeRequests().antMatchers("/chapters").permitAll();
 		http.authorizeRequests().antMatchers("/register").permitAll();
-		http.authorizeRequests().antMatchers("/contactus").permitAll();//do not need to be authenticated to veiw contacts us page
-		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");//needs to be an admin to view admin page
-		http.authorizeRequests().antMatchers("/member/**").hasRole("USER");// needs to be user authenticated to view page
-		http.authorizeRequests().antMatchers("/all/**").hasAnyRole("ADMIN", "USER");// needs to be 
+		http.authorizeRequests().antMatchers("/chapters").hasAnyRole("USER", "ADMIN");
+		http.authorizeRequests().antMatchers("/chaptermembers").hasAnyRole("USER", "ADMIN");
+		http.authorizeRequests().antMatchers("/events/**").hasAnyRole("ADMIN", "USER");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,23 +35,26 @@ color: gold;
 </head>
 <body>
 <jsp:include page ="_menu.jsp"></jsp:include> 
-<p>List of All Chapters</p>
-	<table>
+<p>Registered Members From This Chapter</p>
+	<table class="middle">
 		<tr>
 
-			<td style="font-weight: bold; font-style:impact; font-size: 2em;">Name</td>
-			<td style="font-weight: bold; font-style:impact; font-size:2em;">School</td>
+			<td style="font-weight: bold; font-style:impact; font-size: 2em;">NAME</td>
+			<td style="font-weight: bold; font-style:impact; font-size: 2em;">YEAR</td>
+			<td style="font-weight: bold; font-style:impact; font-size: 2em;">EMAIL</td>
+			<td style="font-weight: bold; font-style:impact; font-size: 2em;">PHONE NUMBER</td>
 
 		</tr>
-		<c:forEach var="chap" items="${chapList}">
+		<c:forEach var="chapMems" items="${memberList}">
 			<tr>
-				<td><a href= "${pageContext.request.contextPath}/chaptermembers/${chap.id}">${chap.name}</a></td>
-				<td>${chap.school}</td>
+				<td>${chapMems.name}</td>
+				<td>${chapMems.intiationYr}</td>
+				<td>${chapMems.email}</td>
+				<td>${chapMems.phoneNum}</td>
 			</tr>
+
 		</c:forEach>
-		
 	</table>
-	<br><br>
-	<a href="register">Back To Login</a>
+
 </body>
 </html>

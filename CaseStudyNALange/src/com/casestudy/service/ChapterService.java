@@ -50,4 +50,16 @@ public class ChapterService implements ChapterDAO {
 		chapRepos.save(chap);
 	}
 
+	@Override
+	public List<Member> getMembersByChapName(String name) {
+		List<Member> list = new ArrayList<>();
+		chapRepos.findMemberByName(name).forEach(list::add);
+				return list;
+	}
+
+	@Override
+	public Chapter getChapById(long id) {
+		return chapRepos.findById(id);
+	}
+
 }

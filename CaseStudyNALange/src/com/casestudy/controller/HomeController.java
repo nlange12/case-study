@@ -62,5 +62,10 @@ public class HomeController {
 		mv.addObject("eventList", eDAO.getAllEvents());
 		return mv;
 	}
-
+	//go to mandated programs page
+	@RequestMapping("/programs")
+	public ModelAndView seePrograms() {
+		ModelAndView mv = new ModelAndView("programs");
+		return mv;
+	}
 }

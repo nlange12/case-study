@@ -63,6 +63,8 @@ public class Member {
 	private String chapSchool;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Credentials credential;
+	@OneToMany(targetEntity= RSVP.class,cascade = CascadeType.ALL, mappedBy="member")
+	private List<RSVP> rsvp;
 	
 	public Member(String name, String email, String intiationYr, String phoneNum) {
 		super();
@@ -180,6 +182,16 @@ public class Member {
 	public void setCredential(Credentials credential) {
 		this.credential = credential;
 	}
+
+	public List<RSVP> getRsvp() {
+		return rsvp;
+	}
+
+	public void setRsvp(List<RSVP> rsvp) {
+		this.rsvp = rsvp;
+	}
+
+
 	
 	
 }

@@ -10,13 +10,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+table{
+width:70%; 
+margin-left:15%; 
+ margin-right:15%;
+}
+body{
+background-color: purple;
+  text-align: center;
+  color: gold;
+  font-family:Helvetica;
+  font-weight: bold;
+}
+a:link{
+color:gold;
+
+}
+a:visited{
+color: gold;
+}
+
+</style>
 </head>
 <body>
+<jsp:include page ="_menu.jsp"></jsp:include> 
 	<table class="middle">
 		<tr>
 
-			<td>NAME</td>
-			<td>EMAIL</td>
+			<td style="font-weight: bold; font-style:impact; font-size: 2em;">NAME</td>
+			<td style="font-weight: bold; font-style:impact; font-size: 2em;">EMAIL</td>
 
 		</tr>
 		<c:forEach var="chapMems" items="${memList}">

@@ -24,7 +24,7 @@ public class CreateAdmin {
 	@Autowired
 	CredentialsRepository cRepos;
 
-public void initAdmin() {//all this is dong is ceating a bootstrap user this does ot validate
+public void initAdmin() {
 		
 		
 		Credentials cred = cRepos.findByUsername("Nick");
@@ -34,8 +34,8 @@ public void initAdmin() {//all this is dong is ceating a bootstrap user this doe
 		Credentials adminUser = new Credentials();
 		adminUser.setName("Nick");
 		adminUser.setUsername("Nick");
-		String encoded = new BCryptPasswordEncoder().encode("123456"); //need to encrypt the password
-		adminUser.setPassword(encoded);//pass the encoded password as the password
+		String encoded = new BCryptPasswordEncoder().encode("123456"); 
+		adminUser.setPassword(encoded);
 		adminUser.setEnabled(true);
 		
 		Authorities role = new Authorities();

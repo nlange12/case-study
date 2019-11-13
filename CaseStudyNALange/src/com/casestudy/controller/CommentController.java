@@ -21,6 +21,7 @@ import com.casestudy.dao.MemberDAO;
 import com.casestudy.model.Comment;
 import com.casestudy.model.Event;
 import com.casestudy.model.Member;
+import com.casestudy.model.RSVP;
 
 @Controller
 public class CommentController {
@@ -40,6 +41,7 @@ public class CommentController {
 		Member member = mDAO.getMemberByUsername(principal.getName());
 		mv.addObject("member", member);
 		mv.addObject("event", event);
+		mv.addObject("rsvp", new RSVP());
 		mv.addObject("commentObj", new Comment());
 		return mv;
 	}
@@ -93,5 +95,6 @@ public class CommentController {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		return mv;
 	}
+	
 
 }

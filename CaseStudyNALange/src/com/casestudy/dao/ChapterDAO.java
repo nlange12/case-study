@@ -16,4 +16,8 @@ public interface ChapterDAO {
 	public Chapter getChapterByName(String name);
 
 	public void saveChap(Chapter chap);
+	
+	public List<Member> getMembersByChapName(String name);
+	
+	public Chapter getChapById(long id);
 }
