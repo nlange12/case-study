@@ -1,3 +1,13 @@
+About: Omega Psi Phi Fraternity incorporated is an organization which hostes many events. It is at times difficult for brothers
+to keep up with each other and all of the events they host. This is the rough draft for my event registration system.
+Members of the organization will be able to sign up, create events, and also rsvp for other events using this web application
+
+
+
+
+
+
+
 As a member, I will create an account with my name, info, and chapter
 As a member, I want to use my username and password to log in to a system, so I know my information is secure.
 As a member  I want to log in and see a home page
