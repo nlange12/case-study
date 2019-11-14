@@ -13,6 +13,7 @@
 </head>
 <body>
 	<jsp:include page="_menu.jsp"></jsp:include>
+	${message}
 	<div>&nbsp;</div>
 	<div>&nbsp;</div>
 	<div>&nbsp;</div>

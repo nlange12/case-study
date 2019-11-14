@@ -92,19 +92,26 @@ public class CommentController {
 		Event event = eDAO.findById(id);
 		mv.addObject("event", comment.getEvent());
 		mv.addObject("commentObj", comment);
+	
 		return mv;
 	}
 	//post edited comment
 	@RequestMapping(value = "/events/editcomment/{id}/processEdit", method = RequestMethod.POST)
 	public ModelAndView postEditComment(RedirectAttributes redirect, Principal principal,
-			@Valid @ModelAttribute("commentObj") Comment com, @PathVariable("id") long id) {
+			@Valid @ModelAttribute("commentObj") Comment com,BindingResult b, @PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Comment comment = comDAO.findCommentById(id);
 		Event event = eDAO.findById(id);
+		if(b.hasErrors()) {
+			mv= new ModelAndView("editComment");
+			mv.addObject("event", comment.getEvent());
+			mv.addObject("commentObj", comment);
+			mv.addObject("message","Comment Cannot Be Empty!");
+		}else {
 		comment.setContent(com.getContent());
 		comDAO.updateComment(comment);
 		redirect.addFlashAttribute("message", "Comment Sucessfully Updated!");
-
+		}
 		return mv;
 	}
 	//delete comment

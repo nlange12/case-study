@@ -96,16 +96,21 @@ public class EventController {
 	@RequestMapping(value = "/events/{id}/processEdit", method = RequestMethod.POST)
 	public ModelAndView editEventPost(RedirectAttributes redirect, Principal principal,
 			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-			@RequestParam("title") String title, @Valid @ModelAttribute("eventObj") Event eve,
-			@RequestParam("content") String content, @PathVariable("id") long id, BindingResult br) {
+			@RequestParam("title") String title, @Valid @ModelAttribute("eventObj") Event eve,BindingResult br,
+			@RequestParam("content") String content, @PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Event event = eDAO.findById(id);
+		if(br.hasErrors()) {
+			mv= new ModelAndView("editEvent");
+			mv.addObject("eventObj", event);
+			mv.addObject("message", "Events Must Have a Title,Date, and Description!\\n Please Re-Enter info!");
+		}else {
 		event.setContent(eve.getContent());
 		event.setTitle(eve.getTitle());
 		event.setDate(eve.getDate());
 		eDAO.updateEvent(event);
 		redirect.addFlashAttribute("message", "Event Sucessfully Updated!");
-
+		}
 		return mv;
 	}
 
