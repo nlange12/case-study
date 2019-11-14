@@ -1,7 +1,10 @@
 package com.casestudy.controller;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -44,6 +47,11 @@ public class CommentController {
 		ModelAndView mv = new ModelAndView("postComment");
 		Event event = eDAO.findById(id);
 		Member member = mDAO.getMemberByUsername(principal.getName());
+		Credentials cred = cDAO.getCredByUsername(principal.getName());
+		Set<String> authorities = new HashSet<String>(Arrays.asList(cred.getAuthorities().stream().map(a -> a.getAuthority()).toArray(String[]::new)));
+		if(authorities.contains("ROLE_ADMIN")) {
+			mv.addObject("role","admin");
+		}
 		mv.addObject("member", member);
 		mv.addObject("event", event);
 		mv.addObject("rsvp", new RSVP());
@@ -59,6 +67,10 @@ public class CommentController {
 		Event event = eDAO.findById(id);
 		Comment comment = new Comment();
 		Member member = mDAO.getMemberByUsername(principal.getName());
+		if(content == null) {
+			mv= new ModelAndView("redirect:/events/{id}/comments");
+			redirect.addFlashAttribute("message","Comment cannot be empty!");
+		}else {
 		comment.setContent(content);
 		comment.setEvent(event);
 		comment.setMember(member);
@@ -66,6 +78,7 @@ public class CommentController {
 		event.getComments().add(comment);
 		member.getComments().add(comment);
 		comDAO.addComment(comment);
+		}
 		return mv;
 	}
 	//edit comment
@@ -74,9 +87,8 @@ public class CommentController {
 		ModelAndView mv = new ModelAndView("editComment");
 		Comment comment = comDAO.findCommentById(id);
 		Event event = eDAO.findById(id);
-		mv.addObject("event", event);
+		mv.addObject("event", comment.getEvent());
 		mv.addObject("commentObj", comment);
-		mv.addObject("action", "update");
 		return mv;
 	}
 	//post edited comment

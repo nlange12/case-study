@@ -23,7 +23,7 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotEmpty
+	@NotEmpty(message="Cannot leave an Empty Comment!")
 	@Column(name = "commentContent", nullable = false)
 	private String content;
 

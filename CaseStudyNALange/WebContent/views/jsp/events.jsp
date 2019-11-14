@@ -58,11 +58,11 @@
 			<a
 				href="${pageContext.request.contextPath}/events/${events.id}/comments">
 				Comment/RSVP</a>
-			<c:if test="${events.getMember().getId() == member.getId()}">
+			<c:if test="${events.getMember().getId() == member.getId()|| role=='admin'}">
 				<a
 					href="${pageContext.request.contextPath}/events/${events.id}/edit">Edit</a>
 			</c:if>
-			<c:if test="${events.getMember().getId() == member.getId()}">
+			<c:if test="${events.getMember().getId() == member.getId() || role=='admin'}">
 				<a
 					href="${pageContext.request.contextPath}/events/${events.id}/delete">Delete</a>
 			</c:if>

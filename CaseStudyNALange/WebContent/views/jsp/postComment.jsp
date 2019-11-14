@@ -41,11 +41,11 @@ ${message}
 		<p>${comment.getMember().getUsername()}<br>
 			${comment.content}
 		</p>
-		<c:if test="${comment.getMember().getId() == member.getId()}">
+		<c:if test="${comment.getMember().getId() == member.getId()|| role =='admin'}">
 			<a
 				href="${pageContext.request.contextPath}/events/editcomment/${comment.id}">Edit</a>
 		</c:if>
-		<c:if test="${comment.getMember().getId() == member.getId()}">
+		<c:if test="${comment.getMember().getId() == member.getId()|| role =='admin'}">
 			<a
 				href="${pageContext.request.contextPath}/events/deletecomment/${comment.id}">Delete</a>
 		</c:if>
@@ -56,7 +56,7 @@ ${message}
 	<c:forEach var="rsvp" items="${event.getRsvp()}">
 	<p>${rsvp.getMember().getName()} &nbsp;&nbsp;&nbsp;${rsvp.getMember().getChapName()}
 		</p>
-	<c:if test="${rsvp.getMember().getId() == member.getId()}">
+	<c:if test="${rsvp.getMember().getId() == member.getId()|| role =='admin'}">
 			<a
 				href="${pageContext.request.contextPath}/events/${rsvp.id}/unrsvp">UN-RSVP</a>
 		</c:if>

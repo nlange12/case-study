@@ -1,7 +1,10 @@
 package com.casestudy.controller;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -21,6 +24,7 @@ import com.casestudy.dao.EventDAO;
 import com.casestudy.dao.MemberDAO;
 import com.casestudy.model.Chapter;
 import com.casestudy.model.Comment;
+import com.casestudy.model.Credentials;
 import com.casestudy.model.Event;
 import com.casestudy.model.Member;
 import com.casestudy.service.ChapterService;
@@ -59,10 +63,13 @@ public class HomeController {
 	@RequestMapping("/events")
 	public ModelAndView getEvents(Principal principal) {
 		ModelAndView mv = new ModelAndView("events");
+		Credentials cred = cDAO.getCredByUsername(principal.getName());
+		Set<String> authorities = new HashSet<String>(Arrays.asList(cred.getAuthorities().stream().map(a -> a.getAuthority()).toArray(String[]::new)));
+		if(authorities.contains("ROLE_ADMIN")) {
+			mv.addObject("role","admin");
+		}
 		mv.addObject("member", mDAO.getMemberByUsername(principal.getName()));
 		mv.addObject("eventList", eDAO.getAllEvents());
-		mv.addObject("startPage", 0);
-        mv.addObject("endPage", eDAO.getNumberOfEvents()/3);
 		return mv;
 	}
 
