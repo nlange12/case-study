@@ -5,56 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link href="<c:url value='/css/home.css'/>" rel="stylesheet">
-<style>
-body {
-	background-color: purple;
-	text-align: center;
-	color: white;
-	font-family: Helvetica;
-}
-
-h1 {
-	color: gold;
-	text-align: center;
-	font-family: Verdana;
-}
-
-.left {
-	text-align: left;
-	color: gold;
-	font-family: helvetica;
-	font-size: 1em;
-}
-
-.right {
-	text-align: right;
-	color: gold;
-	font-family: helvetica;
-	font-size: 1em;
-}
-
-a:link {
-	color: gold;
-}
-
-a:visited {
-	color: gold;
-}
-
-.leftcolumn {
-	width: 25%;
-	float: left;
-	padding: 1em;
-}
-
-.rightcolumn {
-	width: 20%;
-	float: right;
-	padding: 1em;
-}
-</style>
+<title>Home</title>
+<link href="<c:url value="/css/home.css"/>" rel="stylesheet"/>
 </head>
 <body>
 	<jsp:include page="_menu.jsp"></jsp:include>

@@ -9,60 +9,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-body {
-	background-color: purple;
-	text-align: center;
-	color: white;
-	font-family: Helvetica;
-}
-
-.border {
-	border: solid;
-	border-color: gold;
-	margin: 10px;
-	padding: 10px;
-	color: purple;
-	background-color: gold;
-	font-weight: bold;
-}
-
-a:link {
-	color: gold;
-}
-
-a:visited {
-	color: gold;
-}
-
-.date {
-	border: solid 2px;
-	border-color: gold;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.middle {
-	text-align: center;
-	color: purple;
-	font-weight: bold;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.leftcolumn {
-	width: 20%;
-	float: left;
-	padding: 1em;
-}
-
-.ctrcolumn {
-	width: 60%;
-	float: left
-}
-</style>
+<title>Events</title>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 </head>
 <body>
 	<jsp:include page="_menu.jsp"></jsp:include>
@@ -118,10 +66,7 @@ a:visited {
 				<a
 					href="${pageContext.request.contextPath}/events/${events.id}/delete">Delete</a>
 			</c:if>
-
-
-
-		</c:forEach>
+</c:forEach>
 	</div>
 </body>
 </html>

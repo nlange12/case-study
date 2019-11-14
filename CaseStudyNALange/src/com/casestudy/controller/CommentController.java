@@ -16,9 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.casestudy.dao.CommentDAO;
+import com.casestudy.dao.CredentialDAO;
 import com.casestudy.dao.EventDAO;
 import com.casestudy.dao.MemberDAO;
+import com.casestudy.model.Authorities;
 import com.casestudy.model.Comment;
+import com.casestudy.model.Credentials;
 import com.casestudy.model.Event;
 import com.casestudy.model.Member;
 import com.casestudy.model.RSVP;
@@ -32,6 +35,8 @@ public class CommentController {
 	CommentDAO comDAO;
 	@Autowired
 	MemberDAO mDAO;
+	@Autowired
+	CredentialDAO cDAO;
 
 	// takes you to Event Details page to post a comment
 	@RequestMapping("/events/{id}/comments")

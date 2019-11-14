@@ -21,4 +21,6 @@ public interface EventDAO {
 	public void deleteEvent(Event event);
 	
 	public List<Event> getEventByDate(Date d1, Date d2);
+	
+	public int getNumberOfEvents();
 }

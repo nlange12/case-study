@@ -7,28 +7,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-.table {
-	margin: 0 auto;
-	width: 250px
-}
+<title>Login</title>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 
-body {
-	background-color: purple;
-	text-align: center;
-	color: white;
-	font-family: Helvetica;
-}
-
-a:link {
-	color: gold;
-}
-
-a:visited {
-	color: gold;
-}
-</style>
 </head>
 <body>
 	<jsp:include page="_menu.jsp"></jsp:include>
@@ -37,13 +18,13 @@ a:visited {
 	<div>&nbsp;</div>
 	<div>&nbsp;</div>
 	<div>&nbsp;</div>
-	<div class="table">
+	<div class="table2">
 		<form action='<spring:url value="/loginAction" />' method="post">
 			<table>
 				<tr>
 
 					<td style="color: gold; font-weight: bold;">Username</td>
-					<td><input type="text" name="username" /></td>
+					<td><input class="form-control" type="text" name="username" /></td>
 				</tr>
 				<tr>
 

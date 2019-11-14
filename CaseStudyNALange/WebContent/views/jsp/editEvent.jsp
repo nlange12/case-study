@@ -9,29 +9,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-.table{
-width:70%; 
-margin-left:15%; 
- margin-right:15%;
-}
-body{
-background-color: purple;
-  text-align: center;
-  color: white;
-  font-family:Helvetica;
-}
-a:link{
-color:gold;
-}
-a:visited{
-color: gold;
-}
-
-
-
-</style>
+<title>Edit Event</title>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <jsp:include page ="_menu.jsp"></jsp:include> 
@@ -55,6 +34,13 @@ color: gold;
 				<td><form:input style="border:solid;
 border-color:gold;" path="title" name="title" id="title"
 						placeholder="Title"></form:input></td>
+			</tr>
+				<tr>
+
+				<td style="color:gold; font-weight: bold;
+				"><form:label path="date" />Date of Event:</td>
+				<td><form:input style="border:solid;
+border-color:gold;"  type="date" name="date" id="date" path="date"/></td>
 			</tr>
 			<tr>
 

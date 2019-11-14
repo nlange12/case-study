@@ -28,4 +28,9 @@ public class RSVPService implements RSVPDAO {
 		rRepos.delete(rsvp);
 	}
 
+	@Override
+	public RSVP findById(long id) {
+		return rRepos.findById(id);
+	}
+
 }

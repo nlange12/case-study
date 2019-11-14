@@ -31,68 +31,81 @@ public class ChapterController {
 	@Autowired
 	MemberDAO mDAO;
 	@Autowired
-	ChapterDAO chapDAO;	
+	ChapterDAO chapDAO;
 	@Autowired
 	CredentialDAO cDAO;
+
 //view all the chapter who currently have members registered to the application
-@RequestMapping("/chapters")	
-public ModelAndView pickChapter() {
-	ModelAndView mv = new ModelAndView("chapters");
-	mv.addObject("chapList", chapDAO.getAllChapters());
-	return mv;
-}
-	
-	
-//create three chapters and admin when application starts	
-@RequestMapping("/login")	
-public void createChapters() {
-	if(chapDAO.getAllChapters().size()==0) {
-	Chapter c1 = new Chapter("Nu Tau", "SUNY Albany");
-	Chapter c2 = new Chapter("Chi Rho", "Stony Brook");
-	Chapter c3 = new Chapter("Kappa Nu", "SUNY Binghamtom");
-	
-	chapDAO.addChapter(c1);
-	chapDAO.addChapter(c2);
-	chapDAO.addChapter(c3);
-	}
-	Credentials cred = cDAO.getCredByUsername("nic123");
-	
-	if(cred == null) {
-	System.out.println("creating admin...");
-	Credentials adminUser = new Credentials();
-	adminUser.setName("Nick");
-	adminUser.setUsername("nic123");
-	String encoded = new BCryptPasswordEncoder().encode("123456"); 
-	adminUser.setPassword(encoded);
-	adminUser.setEnabled(true);
-	
-	Authorities role = new Authorities();
-	role.setCredentials(adminUser);
-	role.setAuthority("ROLE_ADMIN");
-	adminUser.getAuthorities().add(role);
-	
-	
-	cDAO.addCred(adminUser);
+	@RequestMapping("/chapters")
+	public ModelAndView pickChapter() {
+		ModelAndView mv = new ModelAndView("chapters");
+		mv.addObject("chapList", chapDAO.getAllChapters());
+		return mv;
 	}
 
-}
+//create three chapters and admin when application starts	
+	@RequestMapping("/login")
+	public void createChapters() {
+		if (chapDAO.getAllChapters().size() == 0) {
+			Chapter c1 = new Chapter("Nu Tau", "SUNY Albany");
+			Chapter c2 = new Chapter("Chi Rho", "Stony Brook");
+			Chapter c3 = new Chapter("Kappa Nu", "SUNY Binghamtom");
+
+			chapDAO.addChapter(c1);
+			chapDAO.addChapter(c2);
+			chapDAO.addChapter(c3);
+		}
+		Credentials cred = cDAO.getCredByUsername("nic123");
+
+		if (cred == null) {
+			System.out.println("creating admin...");
+			Credentials adminUser = new Credentials();
+			adminUser.setName("Nick");
+			adminUser.setUsername("nic123");
+			String encoded = new BCryptPasswordEncoder().encode("123456");
+			adminUser.setPassword(encoded);
+			adminUser.setEnabled(true);
+
+			Authorities role = new Authorities();
+			role.setCredentials(adminUser);
+			role.setAuthority("ROLE_ADMIN");
+			adminUser.getAuthorities().add(role);
+			
+			Chapter chap = chapDAO.getChapterByName("Nu Tau");
+			
+			Member adminMember = new Member();
+			adminMember.setChapName("Nu Tau");
+			adminMember.setChapSchool("SUNY ALbany");
+			adminMember.setEmail("nic@gmail.com");
+			adminMember.setIntiationYr("Spring 2015");
+			adminMember.setName("Nick");
+			adminMember.setUsername(adminUser.getUsername());
+			adminMember.setPassword(adminUser.getPassword());
+			adminMember.setPhoneNum("212-000-0000");
+			adminMember.setCredential(adminUser);
+			adminUser.setMember(adminMember);
+			adminMember.setChapter(chap);
+			cDAO.addCred(adminUser);
+		}
+
+	}
 
 //display the list of members for that user session's chapter 
-@RequestMapping(value = "/members", method = RequestMethod.GET)
-public ModelAndView getUserForm(Principal principal) {
-	Member member = mDAO.getMemberByUsername(principal.getName());
-    ModelAndView mav = new ModelAndView("memberList");
-    mav.addObject("memList", mDAO.getChapterMembers(member.getChapter().getName()));
-    return mav;
-}
-//displays a list of members for specific chapter
-@RequestMapping("/chaptermembers/{id}")
-public ModelAndView getChaptersMembers(@PathVariable("id") long id) {
-	Chapter chapter = chapDAO.getChapById(id);
-	ModelAndView mv = new ModelAndView("chapMembers");
-	mv.addObject("memberList", mDAO.getChapterMembers(chapter.getName()) );
-	return mv;
-}
+	@RequestMapping(value = "/members", method = RequestMethod.GET)
+	public ModelAndView getUserForm(Principal principal) {
+		Member member = mDAO.getMemberByUsername(principal.getName());
+		ModelAndView mav = new ModelAndView("memberList");
+		mav.addObject("memList", mDAO.getChapterMembers(member.getChapter().getName()));
+		return mav;
+	}
 
+//displays a list of members for specific chapter
+	@RequestMapping("/chaptermembers/{id}")
+	public ModelAndView getChaptersMembers(@PathVariable("id") long id) {
+		Chapter chapter = chapDAO.getChapById(id);
+		ModelAndView mv = new ModelAndView("chapMembers");
+		mv.addObject("memberList", mDAO.getChapterMembers(chapter.getName()));
+		return mv;
+	}
 
 }

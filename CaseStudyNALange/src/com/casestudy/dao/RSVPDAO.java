@@ -10,5 +10,7 @@ public interface RSVPDAO {
 	public RSVP findByName(String name);
 	
 	public void deleteRSVP(RSVP rsvp);
+	
+	public RSVP findById(long id);
 
 }

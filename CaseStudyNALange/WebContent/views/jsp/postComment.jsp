@@ -8,42 +8,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-body{
-background-color: purple;
-  text-align: center;
-  color: gold;
-  font-family:Helvetica;
-  font-weight:bold;
-}
-.border{
-border:solid;
-border-color:gold;
-margin: 10px;
-padding: 10px;
-color: purple;
-background-color: gold;
-font-weight:bold;
-}
-a:link{
-color:gold;
-}
-a:visited{
-color: gold;
-}
-.leftcolumn{
-width:20%;
-float:left;
-padding :1em;
-}
-.ctrcolumn{
-width:60%;
-float:left
-}
-
-
-</style>
+<title>Event Details</title>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <jsp:include page ="_menu.jsp"></jsp:include> 
@@ -53,7 +19,7 @@ float:left
 <div>&nbsp;</div> 
 <div>&nbsp;</div> 
 <div>&nbsp;</div>
-
+${message}
 	<p class= "border">
 		<span style="font-weight: bold; font-style:impact; font-size:2em;">${event.title}</span><br> Hosted by:
 		${event.getMember().getChapName()}<br> Date: ${event.date}<br>
@@ -66,9 +32,10 @@ float:left
 			rows="2" cols="30"></textarea><br>
 		<input type="submit" value="Leave Comment" />
 	</form:form>
-	<form:form action = "${pageContext.request.contextPath}/events/${event.id}/rsvp" modelAttribute="rsvp" method = "post"><button>RSVP</button></form:form>
-<%-- <form:form action = "${pageContext.request.contextPath}/events/${event.id}/unrsvp"  method = "post"><button>Un-RSVP</button></form:form>--%>
-	<div class= "ctrcolumn">
+	<form:form action = "${pageContext.request.contextPath}/events/${event.id}/rsvp" modelAttribute="rsvp" method = "post">
+	<form:button value="rsvp" id="rsvp">RSVP</form:button>
+	</form:form>
+	<div class= "leftcolumn">
 	<p>Comments</p>
 	<c:forEach var="comment" items="${event.getComments()}">
 		<p>${comment.getMember().getUsername()}<br>
@@ -83,6 +50,19 @@ float:left
 				href="${pageContext.request.contextPath}/events/deletecomment/${comment.id}">Delete</a>
 		</c:if>
 	</c:forEach>
+	</div>
+	<div class= rightcolumn>
+	<p>RSVPs</p>
+	<c:forEach var="rsvp" items="${event.getRsvp()}">
+	<p>${rsvp.getMember().getName()} &nbsp;&nbsp;&nbsp;${rsvp.getMember().getChapName()}
+		</p>
+	<c:if test="${rsvp.getMember().getId() == member.getId()}">
+			<a
+				href="${pageContext.request.contextPath}/events/${rsvp.id}/unrsvp">UN-RSVP</a>
+		</c:if>
+	
+	</c:forEach>
+	
 	</div>
 </body>
 </html>

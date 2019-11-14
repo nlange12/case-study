@@ -9,33 +9,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-table{
-width:70%; 
-margin-left:15%; 
- margin-right:15%;
-}
-body{
-background-color: purple;
-  text-align: center;
-  color: gold;
-  font-family:Helvetica;
-  font-weight: bold;
-}
-a:link{
-color:gold;
-
-}
-a:visited{
-color: gold;
-}
-
-</style>
+<title>Chapter Members</title>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <jsp:include page ="_menu.jsp"></jsp:include> 
-	<table class="middle">
+	<table>
 		<tr>
 
 			<td style="font-weight: bold; font-style:impact; font-size: 2em;">NAME</td>

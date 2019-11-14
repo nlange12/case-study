@@ -1,44 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-body{
-background-color: purple;
-  text-align: center;
-  color: gold;
-  font-family: helvetica;
-}
-a:link{
-
-color:gold;
-
-}
-a:visited{
-
-color: gold;
-}
-.leftcolumn{
-width:20%;
-float:left;
-padding :1em;
-
-}
-.rightcolumn{
-width:20%;
-float:right;
-padding :1em;
-}
-.ctrcolumn{
-width:50%;
-float:left;
-padding:1em;
-}
-
-</style>
+<title>Mandated Programs</title>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <jsp:include page ="_menu.jsp"></jsp:include> 
@@ -64,7 +32,7 @@ March 12 is Omega Psi Phi Memorial Day.
 <p><span style= "font-size:2em; font-family: impact;">RETENTION AND RECLAMATION</span><br>
 This program is an effort to encourage inactive members to become fully active and participate in the fraternity's programs.</p>
 </div>
-<div class="ctrcolumn">
+<div class="ctrcolumn2">
 <p><span style= "font-size:2em; font-family: impact;">COLLEGE ENDOWMENT FUNDS</span><br>
 The fraternity donates thousands of dollars to Historically Black Colleges and Universities each year.</p>
 <p><span style= "font-size:2em; font-family: impact;">HEALTH INITIATIVES</span><br>

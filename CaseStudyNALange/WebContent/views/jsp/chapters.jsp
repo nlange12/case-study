@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>All Chapters</title>
 <style>
 table{
 width:70%; 
@@ -25,12 +25,10 @@ background-color: purple;
 }
 a:link{
 color:gold;
-
 }
 a:visited{
 color: gold;
 }
-
 </style>
 </head>
 <body>
@@ -51,7 +49,5 @@ color: gold;
 		</c:forEach>
 		
 	</table>
-	<br><br>
-	<a href="register">Back To Login</a>
 </body>
 </html>

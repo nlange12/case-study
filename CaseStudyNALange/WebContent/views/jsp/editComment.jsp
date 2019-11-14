@@ -8,58 +8,31 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-.table{
-width:70%; 
-margin-left:15%; 
- margin-right:15%;
-}
-body{
-background-color: purple;
-  text-align: center;
-  color: white;
-  font-family:Helvetica;
-}
-a:link{
-color:gold;
-}
-a:visited{
-color: gold;
-}
-.border{
-border:solid;
-border-color:gold;
-margin: 10px;
-padding: 10px;
-color: purple;
-background-color: gold;
-font-weight:bold;
-}
-</style>
+<title>Edit Comment</title>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 </head>
 <body>
-<jsp:include page ="_menu.jsp"></jsp:include> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
-<div>&nbsp;</div> 
+	<jsp:include page="_menu.jsp"></jsp:include>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
 	<p class="border">
-		<span style="font-weight: bold; font-style:impact; font-size:2em;">${event.title}</span><br> Hosted by:
-		${event.getMember().getChapName()}<br> Date: ${event.date}<br>
-		<br> ${event.content}
+		<span style="font-weight: bold; font-style: impact; font-size: 2em;">${event.title}</span><br>
+		Hosted by: ${event.getMember().getChapName()}<br> Date:
+		${event.date}<br> <br> ${event.content}
 	</p>
 	<form:form modelAttribute="commentObj"
 		action="${pageContext.request.contextPath}/events/editcomment/${commentObj.id}/processEdit"
 		method="post">
-		<textarea  style="border:solid;
-border-color:gold;"name="content" id="content" placeholder="Leave Comment"
-			rows="2" cols="30"></textarea><br>
+		<textarea style="border: solid; border-color: gold;" name="content"
+			id="content" placeholder="Leave Comment" rows="2" cols="30"></textarea>
+		<br>
 		<input type="submit" value="Leave Comment" />
 	</form:form>
 

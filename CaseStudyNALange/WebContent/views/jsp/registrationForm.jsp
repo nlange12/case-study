@@ -9,24 +9,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Form</title>
-<style>
-.table{
-margin : 0 auto;
-width:250px
-}
-body{
-background-color: purple;
-  text-align: center;
-  color: white;
-  font-family:Helvetica;
-}
-a:link{
-color:gold;
-}
-a:visited{
-color: gold;
-}
-</style>
+<link href="<c:url value="/css/chap.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <jsp:include page ="_menu.jsp"></jsp:include> 
@@ -36,7 +19,7 @@ color: gold;
 <div>&nbsp;</div> 
  
 	<p>${message}</p>
-	<div class="table">
+	<div class="table2">
 	<form:form id="resFormObj" modelAttribute="resFormObj" method="post"
 		action="${pageContext.request.contextPath}/processCredential">
 		<table class="middle">

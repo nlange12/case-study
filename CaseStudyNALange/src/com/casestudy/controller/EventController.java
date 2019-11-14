@@ -58,7 +58,7 @@ public class EventController {
 	// adds new event to databse
 	@RequestMapping(value = "/events/processEvent", method = RequestMethod.POST)
 	public ModelAndView postEvent(RedirectAttributes redirect, Principal principal, @RequestParam("title") String title,
-			@RequestParam("date") @DateTimeFormat(pattern = "MM-dd") Date date,
+			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
 			@Valid @ModelAttribute("eventObj") Event eve, @RequestParam("content") String content) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Event event = new Event();
@@ -88,6 +88,7 @@ public class EventController {
 	// process edited event
 	@RequestMapping(value = "/events/{id}/processEdit", method = RequestMethod.POST)
 	public ModelAndView editEventPost(RedirectAttributes redirect, Principal principal,
+			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
 			@RequestParam("title") String title, @Valid @ModelAttribute("eventObj") Event eve,
 			@RequestParam("content") String content, @PathVariable("id") long id, BindingResult br) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
@@ -135,9 +136,9 @@ public class EventController {
 		}
 
 	}
-
+	//rsvp for event
 	@RequestMapping(value = "/events/{id}/rsvp", method = RequestMethod.POST)
-	public ModelAndView rsvpForEvent(String content, @PathVariable("id") long id, Principal principal,
+	public ModelAndView rsvpForEvent( @PathVariable("id") long id, Principal principal,
 			RedirectAttributes redirect) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Event event = eDAO.findById(id);
@@ -154,13 +155,15 @@ public class EventController {
 		redirect.addFlashAttribute("message", "You Have Succesfully RSVP'd for This Event!");
 		return mv;
 	}
-
+	//unrsvp for event
 	@RequestMapping(value = "/events/{id}/unrsvp")
 	public ModelAndView unRSVP(@PathVariable("id") long id, RedirectAttributes redirect, Principal principal) {
 		Member member = mDAO.getMemberByUsername(principal.getName());
-		rDAO.deleteRSVP(rDAO.findByName(member.getName()));
+		Event event = eDAO.findById(id);
+		ModelAndView mv= null;
+		rDAO.deleteRSVP(rDAO.findById(id));
 		redirect.addFlashAttribute("message", "You Have UN-RSVP'd for this event!");
-		ModelAndView mv = new ModelAndView("redirect:/events");
+		 mv = new ModelAndView("redirect:/events");
 		return mv;
 	}
 

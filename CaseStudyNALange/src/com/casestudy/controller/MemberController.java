@@ -80,7 +80,7 @@ public class MemberController {
 					Member mem1 = new Member();
 					mem1.setUsername(cred.getUsername());
 					mem1.setName(mem.getName());
-					mem1.setPassword(cred.getPassword());
+					mem1.setPassword(credential.getPassword());
 					mem1.setPhoneNum(mem.getPhoneNum());
 					mem1.setIntiationYr(mem.getIntiationYr());
 					mem1.setEmail(mem.getEmail());
@@ -117,7 +117,7 @@ public class MemberController {
 
 				mem1.setUsername(cred.getUsername());
 				mem1.setName(mem.getName());
-				mem1.setPassword(cred.getPassword());
+				mem1.setPassword(credential.getPassword());
 				mem1.setPhoneNum(mem.getPhoneNum());
 				mem1.setIntiationYr(mem.getIntiationYr());
 				mem1.setEmail(mem.getEmail());

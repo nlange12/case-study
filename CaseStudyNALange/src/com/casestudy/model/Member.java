@@ -35,7 +35,7 @@ public class Member {
 	
 	@Column(name = "username")
 	private String username;
-	
+	@Transient
 	@Column(name = "password")
 	private String password;
 	

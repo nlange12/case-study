@@ -61,6 +61,8 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("events");
 		mv.addObject("member", mDAO.getMemberByUsername(principal.getName()));
 		mv.addObject("eventList", eDAO.getAllEvents());
+		mv.addObject("startPage", 0);
+        mv.addObject("endPage", eDAO.getNumberOfEvents()/3);
 		return mv;
 	}
 

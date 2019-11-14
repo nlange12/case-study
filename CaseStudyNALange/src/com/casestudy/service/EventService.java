@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -57,5 +60,9 @@ public class EventService implements EventDAO {
 		List<Event> list = new ArrayList<>();
 		eRepos.findByDateBetween(d1, d2).forEach(list::add);
 		return list;
+	}
+	@Override
+	public int getNumberOfEvents() {
+		return (int) eRepos.count();
 	}
 }
