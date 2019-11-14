@@ -57,7 +57,7 @@ public class MemberController {
 
 		if (b.hasErrors()) {
 			mv = new ModelAndView("registrationForm");
-			mv.addObject("message", "All Fields Must be Filled!");
+			mv.addObject("message", "All Fields Must be Filled!\nPlease Re-Enter Information");
 		} else {
 			if (credential == null) {
 				if (cred.getPassword().equals(confpassword)) {

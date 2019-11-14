@@ -66,7 +66,7 @@ public class EventController {
 		if (br.hasErrors()) {
 			mv = new ModelAndView("post");
 			mv.addObject("eventObj", new Event());
-            mv.addObject("message","Events Must Have a Title,Date, and Description!");
+            mv.addObject("message","Events Must Have a Title,Date, and Description!\n Please Re-Enter info!");
         }
 		
 		event.setContent(content);
