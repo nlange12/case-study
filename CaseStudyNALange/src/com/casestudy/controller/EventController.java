@@ -67,7 +67,7 @@ public class EventController {
 			mv = new ModelAndView("post");
 			mv.addObject("eventObj", new Event());
             mv.addObject("message","Events Must Have a Title,Date, and Description!\n Please Re-Enter info!");
-        }
+        }else {
 		
 		event.setContent(content);
 		event.setTitle(title);
@@ -77,6 +77,7 @@ public class EventController {
 		member.getEvents().add(event);
 		eDAO.addEvent(event);
 		redirect.addFlashAttribute("message", "Event Sucessfully Uploaded!");
+        }
 		return mv;
 
 	}
