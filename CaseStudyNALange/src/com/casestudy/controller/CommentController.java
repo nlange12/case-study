@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,24 +62,26 @@ public class CommentController {
 
 	// Adds comment to Event
 	@RequestMapping(value = "/events/{id}/comment", method = RequestMethod.POST)
-	public ModelAndView postComment(String content, @PathVariable("id") long id, Principal principal,
-			RedirectAttributes redirect) {
+	public ModelAndView postComment( @PathVariable("id") long id, Principal principal, 
+			@Valid @ModelAttribute("commentObj")Comment com,BindingResult b,@Valid @ModelAttribute("rsvp")RSVP rsvp ,BindingResult br, RedirectAttributes redirect) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Event event = eDAO.findById(id);
 		Comment comment = new Comment();
 		Member member = mDAO.getMemberByUsername(principal.getName());
-		if(content == null) {
-			mv= new ModelAndView("redirect:/events/{id}/comments");
-			redirect.addFlashAttribute("message","Comment cannot be empty!");
-		}else {
-		comment.setContent(content);
+		if (b.hasErrors()) {
+			mv = new ModelAndView("postComment");
+			mv.addObject("member", member);
+			mv.addObject("event", event);
+            mv.addObject("message","Comment Cannot Be Empty!");
+        }else {
+		comment.setContent(com.getContent());
 		comment.setEvent(event);
 		comment.setMember(member);
 		comment.setTimestamp(new Date());
 		event.getComments().add(comment);
 		member.getComments().add(comment);
 		comDAO.addComment(comment);
-		}
+        }
 		return mv;
 	}
 	//edit comment

@@ -1,21 +1,20 @@
-About: Omega Psi Phi Fraternity incorporated is an organization which hostes many events. It is at times difficult for brothers
+About: Omega Psi Phi Fraternity Incorporated is an organization which hosts many events. It is at times difficult for brothers
 to keep up with each other and all of the events they host. This is the rough draft for my event registration system.
-Members of the organization will be able to sign up, create events, and also rsvp for other events using this web application
+Members of the organization will be able to sign up, create events, and also rsvp for other events using this web application.
 
 
 As a member, I will create an account with my name, info, and chapter
 As a member, I want to use my username and password to log in to a system, so I know my information is secure.
 As a member  I want to log in and see a home page
-As a member i want to have acess to see which of my chapter members are also registered
+As a member i want to have access to see which of my chapter members are also registered
  As a member, i want to be able to post upcoming events 
 As a member i want to be able to leave comments on event posts
 As a member I want to be able to rsvp for events that are posted
 As a member I should be the only one able to edit or delete and event that i post
-As a member i should be the only one to edit or delte comments that i post under an event
+As a member i should be the only one to edit or delete comments that i post under an event
 As an admin i will be able to edit and delete any comment or event posting
 As a system, I want to collect users info, so that I can establish an identity record for a new user. 
 As a system, I want to validate username and password, so that only valid users are able to access their account.
-As a system I should have a broadcast page for information for every chapter
 
 
 Github Link: https://github.com/nlange12/case-study.git
