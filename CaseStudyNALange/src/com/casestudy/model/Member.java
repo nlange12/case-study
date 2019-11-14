@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "member")
@@ -26,19 +27,19 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "memberId")
 	private long id;
-	
+	@NotEmpty(message = "required")
 	@Column(name = "fullName")
 	private String name;
-	
+	@NotEmpty(message = "required")
 	@Column(name = "email")
 	private String email;
-	
+	@NotEmpty(message = "required")
 	@Column(name = "username")
 	private String username;
 	@Transient
 	@Column(name = "password")
 	private String password;
-	
+	@NotEmpty(message = "required")
 	@Column(name = "crossingYear")
 	private String intiationYr;
 	

@@ -59,10 +59,16 @@ public class EventController {
 	@RequestMapping(value = "/events/processEvent", method = RequestMethod.POST)
 	public ModelAndView postEvent(RedirectAttributes redirect, Principal principal, @RequestParam("title") String title,
 			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-			@Valid @ModelAttribute("eventObj") Event eve, @RequestParam("content") String content) {
+			@Valid @ModelAttribute("eventObj") Event eve,BindingResult br, @RequestParam("content") String content) {
 		ModelAndView mv = new ModelAndView("redirect:/events");
 		Event event = new Event();
 		Member member = mDAO.getMemberByUsername(principal.getName());
+		if (br.hasErrors()) {
+			mv = new ModelAndView("post");
+			mv.addObject("eventObj", new Event());
+            mv.addObject("message","Events Must Have a Title,Date, and Description!");
+        }
+		
 		event.setContent(content);
 		event.setTitle(title);
 		event.setDate(date);

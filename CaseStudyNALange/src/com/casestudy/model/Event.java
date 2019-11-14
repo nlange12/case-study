@@ -28,11 +28,11 @@ public class Event {
 	@Column(name = "eventId")
 	private long id;
 
-	@NotEmpty
+	
 	@Column(name = "eventTitle", nullable = false)
 	private String title;
 
-	@NotEmpty
+	
 	@Column(name = "eventContent", nullable = false, length= 1000)
 	private String content;
 	

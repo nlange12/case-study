@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -23,10 +24,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Credentials {
 
 	@Id
+	@NotEmpty(message = "required")
 	@Column(name = "username", nullable = false)	
 	private String username;	
+	@NotEmpty(message = "required")
 	@Column(name = "name", nullable= false)
 	private String name;
+	@NotEmpty(message = "required")
 	@Column(name = "password", nullable= false)
 	private String password;
 	@Column(name = "enabled", nullable= false)

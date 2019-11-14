@@ -46,7 +46,7 @@ public class MemberController {
 
 	// register member
 	@RequestMapping(value = "processCredential", method = RequestMethod.POST)
-	public ModelAndView loginProcess(@Valid @ModelAttribute("resFormObj") Credentials cred,
+	public ModelAndView loginProcess(@Valid @ModelAttribute("resFormObj") Credentials cred,BindingResult b,
 			@Valid @ModelAttribute("memFormObj") Member mem, BindingResult br,
 			@RequestParam("confpassword") String confpassword, @RequestParam("chapter.name") String chapName,
 			@RequestParam("chapter.school") String chapSchool, RedirectAttributes redirect, Principal principal) {
@@ -55,10 +55,9 @@ public class MemberController {
 		Authorities role = new Authorities();
 		Chapter chap = chapDAO.getChapterByName(chapName);
 
-		if (br.hasErrors()) {
-			br.getAllErrors().forEach(System.out::println);
-			mv = new ModelAndView("login");
-			mv.addObject("message", "error Loggin in");
+		if (b.hasErrors()) {
+			mv = new ModelAndView("registrationForm");
+			mv.addObject("message", "All Fields Must be Filled!");
 		} else {
 			if (credential == null) {
 				if (cred.getPassword().equals(confpassword)) {
